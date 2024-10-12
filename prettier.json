@@ -1,0 +1,10 @@
+{
+    "tabWidth":2,
+    "semi":true,
+    "arrorParams":"always",
+    "blackerSplacing":true,
+    "blacketSameLine":false,
+    "htmlWhiteSpaceSensitivity":"ignore",
+    "printWidth":80
+
+}
