@@ -45,7 +45,7 @@ const contactsSlice = createSlice({
             state.isLoading = false;
             state.error = null;
         })
-        .addCase(deleteContact, handleRejected)
+        .addCase(deleteContact.rejected, handleRejected)
         .addCase(logOut.fulfilled, (state) => {
             state.contacts = [];
             state.isLoading = false;

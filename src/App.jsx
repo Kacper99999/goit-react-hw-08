@@ -36,7 +36,7 @@ function App() {
       />
       <Route
       path='/login'
-      element={<RestrictedRoute redirectTo = "/contants" component={<LoginPage />}/>}
+      element={<RestrictedRoute redirectTo = "/contacts" component={<LoginPage />}/>}
       />
       <Route 
       path='/contacts'
