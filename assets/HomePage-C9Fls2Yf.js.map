@@ -1,0 +1,1 @@
+{"version":3,"file":"HomePage-C9Fls2Yf.js","sources":["../../src/pages/HomePage.jsx"],"sourcesContent":["export default function HomePage()  {\r\n    return(\r\n        <div>\r\n            <h1>Welcome</h1>\r\n        </div>\r\n    );\r\n};"],"names":["HomePage","jsx"],"mappings":"wCAAA,SAAwBA,GAAY,CAChC,OACKC,MAAA,MAAA,CACG,SAACA,EAAA,IAAA,KAAA,CAAG,mBAAO,CACf,CAAA,CAER"}
