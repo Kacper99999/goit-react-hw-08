@@ -5,7 +5,8 @@ export const register = createAsyncThunk(
     "auth/register",
     async(credentials, thunkAPI) => {
         try {
-            const res = await client.post('/users/signup', credentials);
+            console.log(credentials)
+            const res = await client.post('users/signup', credentials);
             setAuthHeader(res.data.token);
             return res.data;
         }catch(error) {
@@ -18,7 +19,7 @@ export const logIn = createAsyncThunk(
     "auth/logIn",
     async (credentials, thunkAPI) => {
         try {
-            const res = client.post("/users/login", credentials);
+            const res = client.post("users/login", credentials);
             setAuthHeader(await res.data.token);
             return (await res).data;
         }catch(error){

@@ -11,7 +11,7 @@ export const LoginForm = () => {
         const form = e.currentTarget;
         dispatch(
             logIn({
-                emial:form.elemetns.emial.value,
+                email:form.elemetns.email.value,
                 password:form.elemetns.password.value,
             }));
             form.reset();
@@ -21,11 +21,11 @@ export const LoginForm = () => {
         <form onSubmit={handleSubmit}>
             <label>
                 Email
-                <input type="text" />
+                <input type="text" name="email" />
             </label>
             <label>
                 Password
-                <input type="text" />
+                <input type="text" name="password" />
             </label>
             <button type="submit">Log In</button>
         </form>

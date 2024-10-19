@@ -1,4 +1,4 @@
-import { Helmet } from "react-helmet";
+import { Helmet, HelmetProvider } from "react-helmet-async";
 import { ContactEditor } from "../components/ContactEditor";
 import { ContactList } from "../components/ContactsList";
 import { selectLoading } from "../redux/selectors/contacts.selectors";
@@ -15,13 +15,15 @@ export default function ContactsPage() {
     },[dispatch])
 
     return(
-        <div>
-        <Helmet>
-            <title>Your Contacts</title>
-        </Helmet>
-        <ContactEditor/>
-        <div>{isLoading && "IS LOADING CONTACTS"}</div>
-        <ContactList/>
-        </div>
+        <HelmetProvider>
+            <div>
+            <Helmet>
+                <title>Your Contacts</title>
+            </Helmet>
+            <ContactEditor/>
+            <div>{isLoading && "IS LOADING CONTACTS"}</div>
+            <ContactList/>
+            </div>
+        </HelmetProvider>
     );
 };

@@ -9,9 +9,10 @@ export const RegisterForm = () => {
     const handleSubmit = (e) => {
         e.preventDefault();
         const form = e.currentTarget;
+
         dispatch(register({
             name:form.elements.name.value,
-            emial:form.elements.emial.value,
+            email:form.elements.email.value,
             password:form.elements.password.value,
         }));
         form.reset();
@@ -25,7 +26,7 @@ export const RegisterForm = () => {
             </label>
             <label>
                 Email
-                <input type="text" name="emial" />
+                <input type="email" name="email" />
             </label>
             <label>
                 Password
