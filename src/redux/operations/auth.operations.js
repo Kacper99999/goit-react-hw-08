@@ -1,6 +1,7 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
 import { client , setAuthHeader , clearAuthHeader} from "../../lib/client";
 
+
 export const register = createAsyncThunk(
     "auth/register",
     async(credentials, thunkAPI) => {

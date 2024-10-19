@@ -1,38 +1,48 @@
 import { useDispatch } from "react-redux";
 import { register } from "../../redux/operations/auth.operations";
-//import css from "./RegisterForm.module";
+import { Formik, Form, Field, ErrorMessage } from 'formik'; 
+import * as Yup from 'yup'; 
+import css from "./RegisterForm.module.css"
+
 
 export const RegisterForm = () => {
+    const dispatch = useDispatch();
 
-     const dispatch = useDispatch();
+    const validationSchema = Yup.object().shape({
+        name: Yup.string().required('Imię jest wymagane'),
+        email: Yup.string().email('Nieprawidłowy format e-mail').required('E-mail jest wymagany'),
+        password: Yup.string().min(6, 'Hasło musi mieć co najmniej 6 znaków').required('Hasło jest wymagane'),
+    });
 
-    const handleSubmit = (e) => {
-        e.preventDefault();
-        const form = e.currentTarget;
-
-        dispatch(register({
-            name:form.elements.name.value,
-            email:form.elements.email.value,
-            password:form.elements.password.value,
-        }));
-        form.reset();
-    };
-
-    return(
-        <form onSubmit = {handleSubmit}>
-            <label>
-                Name
-                <input type="text" name="name" />
-            </label>
-            <label>
-                Email
-                <input type="email" name="email" />
-            </label>
-            <label>
-                Password
-                <input type="text" name="password" />
-            </label>
-            <button type="submit">Register</button>
-        </form>
+    return (
+        <Formik
+            initialValues={{ name: '', email: '', password: '' }} 
+            validationSchema={validationSchema} 
+            onSubmit={(values, { resetForm }) => {
+                dispatch(register(values)); 
+                resetForm(); 
+            }}
+        >
+            {({ errors, touched }) => ( 
+                <Form>
+                    <label>
+                        Name
+                        <Field type="text" name="name" />
+                        <ErrorMessage name="name" component="div" /> 
+                    </label>
+                    <label>
+                        Email
+                        <Field type="email" name="email" />
+                        <ErrorMessage name="email" component="div" /> 
+                    </label>
+                    <label>
+                        Password
+                        <Field type="password" name="password" />
+                        <ErrorMessage name="password" component="div" /> 
+                    </label>
+                    <button type="submit">Register</button>
+                </Form>
+            )}
+        </Formik>
     );
 };
