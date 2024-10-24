@@ -2,47 +2,29 @@ import { useDispatch } from "react-redux";
 import { logIn } from "../../redux/operations/auth.operations";
 import { Formik, Form, Field, ErrorMessage } from "formik";
 import * as Yup from "yup"; 
+import { useState } from "react";
 
 export const LoginForm = () => {
+    const [values, setValues] = useState({email:"", password:""})
     const dispatch = useDispatch();
 
-    const validationSchema = Yup.object().shape({
-        email: Yup.string()
-            .email("Niepoprawny adres e-mail")
-            .required("Adres e-mail jest wymagany"),
-        password: Yup.string()
-            .min(6, "Hasło musi mieć co najmniej 6 znaków")
-            .required("Hasło jest wymagane"),
-    });
 
-    const handleSubmit = (values, { resetForm }) => {
+
+    const handleSubmit = (e) => {
+        e.preventDefault();
+        console.log(values);
         dispatch(logIn(values));
-        resetForm();
     };
 
+    const chandleChange = (e) => {
+        const {name, value} = e.target;
+        setValues({...values, [name]:value})
+    }
     return (
-        <Formik
-            initialValues={{ email: "", password: "" }}
-            validationSchema={validationSchema}
-            onSubmit={handleSubmit}
-        >
-            {({ isSubmitting }) => (
-                <Form>
-                    <label>
-                        Email
-                        <Field type="text" name="email" />
-                        <ErrorMessage name="email" component="div" style={{ color: 'red' }} />
-                    </label>
-                    <label>
-                        Hasło
-                        <Field type="password" name="password" />
-                        <ErrorMessage name="password" component="div" style={{ color: 'red' }} />
-                    </label>
-                    <button type="submit" disabled={isSubmitting}>
-                        Zaloguj się
-                    </button>
-                </Form>
-            )}
-        </Formik>
+        <form onSubmit={handleSubmit} >
+            <input type="email" name="email" value={values.email} onChange={chandleChange}/>
+            <input type="password" name="password" value={values.password} onChange={chandleChange}/>
+            <button>LogIn</button>
+        </form>
     );
 };

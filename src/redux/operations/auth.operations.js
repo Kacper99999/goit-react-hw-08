@@ -20,9 +20,11 @@ export const logIn = createAsyncThunk(
     "auth/logIn",
     async (credentials, thunkAPI) => {
         try {
-            const res = client.post("users/login", credentials);
-            setAuthHeader(await res.data.token);
-            return (await res).data;
+            console.log(credentials)
+            const res = await client.post("users/login", credentials);
+            setAuthHeader(res.data.token);
+            console.log(res.data)
+            return res.data;
         }catch(error){
             return thunkAPI.rejectWithValue(error.message);
         }
