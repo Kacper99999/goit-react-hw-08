@@ -1,31 +1,44 @@
 import { useDispatch } from "react-redux";
-import { useState } from "react";
 import { addContact } from "../../redux/operations/contacts.operations";
 //import css from "./ContactEditor.module";
+import { Formik, Field, Form, ErrorMessage } from "formik";
+import * as Yup from 'yup';
 
 export const ContactEditor = () => {
     const dispatch = useDispatch();
-    const [values, setValues] = useState({name:"", number:""})
-
-    const handleSubmit = (e) =>{
-        e.preventDefault();
-        dispatch(addContact(values));
-         
-    };
-
-    const handleChange = (e) => {
-        const {name, value} = e.target;
-        setValues((pre) => ({
-            ...pre,
-            [name]:value
-        }))
-    }
+    const validationSchema = Yup.object({
+        name: Yup.string()
+        .required("Imie jest wymagane"),
+        number : Yup.string()
+        .matches(/^\d{9}$/,"Numer musi składac się z 9 cyfr")
+        .required("Numer kontaktowy jest wymagany"),
+    });
 
     return(
-        <form onSubmit={handleSubmit}>
-            <input type="text" name="name" value={values.name} onChange={handleChange}/>
-            <input type="number" name="number" value={values.number} onChange={handleChange}/>
-            <button>Add Contact</button>
-        </form>
+        <Formik
+        initialValues={{name:"", number:""}}
+        validationSchema={validationSchema}
+        onSubmit={(values,{resetForm})=>{
+            dispatch(addContact(values));
+            resetForm();
+        }}
+        >
+            {({isSubmitting}) =>(
+                <Form>
+                <div>
+                    <label>name</label>
+                    <Field type="name" name="name" id="name"/>
+                    <ErrorMessage name="name" component={"div"} style={{color:"red"}}/>
+                </div>
+                <div>
+                    <label>number</label>
+                    <Field type="number" name="number" id="number"/>
+                    <ErrorMessage name="number" component={"div"} style={{color:"red"}}/>
+                </div>
+                <button type="submit" disabled={isSubmitting}>Add contact</button>
+                
+            </Form>
+            )}
+        </Formik>
     );
 };

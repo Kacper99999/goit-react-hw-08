@@ -1,0 +1,12 @@
+.div{
+    display:flex;
+    width: 400px;
+    height: 40px;
+    position: relative;
+    background-color: rgb(255, 253, 231);
+    align-items: center;
+    justify-content: space-between;
+    border-radius: 7px;
+}
+
+

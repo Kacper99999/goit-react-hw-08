@@ -25,7 +25,9 @@ function App() {
     dispatch(refreshUser())
   },[dispatch])
 
-  return  (
+  return isRefreshing ? (
+    <p>Please wait...</p>
+  ) : (
     <Routes>
       <Route path='/' element={<MainLayout/>}>
       <Route index element={<HomePage/>}/>
