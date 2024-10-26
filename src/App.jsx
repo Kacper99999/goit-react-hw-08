@@ -1,6 +1,6 @@
 import './App.css'
 import { useEffect, lazy } from 'react';
-import { useDispatch , useSelector} from 'react-redux';
+import { useDispatch } from 'react-redux';
 import { Route, Routes } from 'react-router-dom';
 import { MainLayout } from './components/layouts/MainLayout';
 import { PrivateRoute } from './components/route/PrivateRoute';

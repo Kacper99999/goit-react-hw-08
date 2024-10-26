@@ -1,7 +1,7 @@
 import { useDispatch } from "react-redux";
 import { logOut } from "../../redux/operations/auth.operations";
 import { useAuth } from "../../hooks";
-//import css from "./UserMenu.module";
+import css from "./UserMenu.module.css";
 
 export const UserMenu = () => {
     const { user } = useAuth();
@@ -13,7 +13,7 @@ export const UserMenu = () => {
     };
 
     return(
-        <div>
+        <div className={css.header}>
             <p>Welcome {user.name}</p>
             <button onClick={handleLogOut}>Log Out</button>
         </div>

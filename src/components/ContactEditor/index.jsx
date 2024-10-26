@@ -1,6 +1,6 @@
 import { useDispatch } from "react-redux";
 import { addContact } from "../../redux/operations/contacts.operations";
-//import css from "./ContactEditor.module";
+import css from "./ContactEditor.module.css";
 import { Formik, Field, Form, ErrorMessage } from "formik";
 import * as Yup from 'yup';
 
@@ -24,7 +24,7 @@ export const ContactEditor = () => {
         }}
         >
             {({isSubmitting}) =>(
-                <Form>
+                <Form className={css.form}>
                 <div>
                     <label>name</label>
                     <Field type="name" name="name" id="name"/>

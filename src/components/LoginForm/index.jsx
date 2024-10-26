@@ -2,6 +2,7 @@ import { useDispatch } from "react-redux";
 import { logIn } from "../../redux/operations/auth.operations";
 import { Formik, Form, Field, ErrorMessage} from "formik";
 import * as Yup from "yup"; 
+import css from "./LoginForm.module.css"
 
 export const LoginForm = () => {
 
@@ -23,7 +24,7 @@ export const LoginForm = () => {
         }}
         >
             {({isSubmitting}) =>(
-                <Form>
+                <Form className={css.form}>
                 <div>
                     <label>Email</label>
                     <Field type="email" name="email" id="email"/>

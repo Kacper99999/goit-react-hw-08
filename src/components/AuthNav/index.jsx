@@ -5,10 +5,10 @@ export const AuthNav = () => {
     return(
         <div>
             <NavLink to="/register">
-            Register
+                Register
             </NavLink>
             <NavLink to="/login">
-            Log In
+                Log In
             </NavLink>
         </div>
     );

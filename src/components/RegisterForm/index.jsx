@@ -2,7 +2,7 @@ import { useDispatch } from "react-redux";
 import { register } from "../../redux/operations/auth.operations";
 import { Formik, Form, Field, ErrorMessage } from 'formik'; 
 import * as Yup from 'yup'; 
-//import css from "./RegisterForm.module.css"
+import css from "./RegisterForm.module.css"
 
 
 export const RegisterForm = () => {
@@ -26,7 +26,7 @@ export const RegisterForm = () => {
         }}
         >
             {({isSubmitting}) =>(
-                <Form>
+                <Form className={css.form}>
                 <div>
                 <label>Imię</label>
                 <Field type="text" name="name" id="name"/>
